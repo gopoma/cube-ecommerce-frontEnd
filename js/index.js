@@ -49,7 +49,7 @@ function showWelcome() {
       <li>Passport para el inicio de sesión con redes sociales.</li>
       <li>El despliegue del backend fue realizado en Heroku y Google Cloud.</li>
       <li>El despliegue del frontend fue realizado en Vercel.</li>
-    </ul>;
+    </ul>
   `;
 }
 
