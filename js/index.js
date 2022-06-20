@@ -30,6 +30,7 @@ fetch(url, {credentials:'include'})
   showWelcome();
   showMenuUserLogged();
 })
+.catch(console.log)
 
 function showWelcome() {
   const main = document.querySelector("#main");
@@ -104,6 +105,7 @@ function doLogin() {
     showMenuUserLogged();
     showWelcome();
   })
+  .catch(console.log)
 }
 
 function showSignUp() {
@@ -150,6 +152,7 @@ function doSignUp() {
     showMenuUserLogged();
     showWelcome();
   })
+  .catch(console.log)
 }
 
 function doLogOut() {
@@ -167,6 +170,7 @@ function doLogOut() {
       <p class="navbar__link" onclick="showSignUp()">SignUp</p>
     `;
   })
+  .catch(console.log)
 }
 
 function showProducts(limit = 4, page = 1) {
@@ -209,7 +213,8 @@ function showProducts(limit = 4, page = 1) {
         ${btnNextComponent}
       </div>
     `;
-  });
+  })
+  .catch(console.log)
 }
 
 function showProductDetails(idProduct) {
@@ -250,6 +255,7 @@ function showProductDetails(idProduct) {
       </article>
     `;
   })
+  .catch(console.log)
 }
 
 function reduceOne() {
@@ -280,6 +286,7 @@ function addToCart(idProduct) {
   fetch(url, request)
   .then(response => response.json())
   .then(() => {showCart()})
+  .catch(console.log)
 }
 
 function showCart() {
@@ -312,6 +319,7 @@ function showCart() {
       <section class="cart-items">${cartItemsComponent}</section>
     `;
   })
+  .catch(console.log)
 }
 
 function removeFromCart(idProduct) {
