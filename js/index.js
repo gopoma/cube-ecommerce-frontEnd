@@ -38,14 +38,17 @@ function showWelcome() {
     <h2>Bienvenido ${(user && user.name)? user.name : ""}</h2>
     <p>Este sistema fue desarrollado por alumnos del primer año de la Escuela Profesional de Ingeniería de Sistemas, de la Universidad Nacional de San Agustín de Arequipa</p>
     <p>El sistema fué desarrollado usando estas tecnologías:</p>
-    <ul>
-      <li>HTML y CSS</li>
-      <li>Perl para el backend</li>
-      <li>MariaDB para la base de datos</li>
-      <li>Javascript para el frontend</li>
-      <li>Las páginas se escriben en lenguaje Markdown</li>
-      <li>Se usaron expresiones regulares para el procesamiento del lenguaje Markdown</li>
-      <li>La comunicación entre el cliente y el servidor se hizo usando XML de manera asíncrona</li>
+    <ul class="technologies">
+      <li>HTML, CSS y vanilla JavaScript para el FrontEnd.</li>
+      <li>NodeJS para el backend a través del framework Express.</li>
+      <li>MongoDB para la base de datos.</li>
+      <li>El ODM Mongoose para la validación y modelado de objetos en el modelo.</li>
+      <li>La comunicación entre el cliente y el servidor se hizo usando JSON de manera asíncrona.</li>
+      <li>HttpOnly Cookies para el control de flujo en la autenticación.</li>
+      <li>Stripe para el manejo de los pagos.</li>
+      <li>Passport para el inicio de sesión con redes sociales.</li>
+      <li>El despliegue del backend fue realizado en Heroku y Google Cloud.</li>
+      <li>El despliegue del frontend fue realizado en Vercel.</li>
     </ul>;
   `;
 }
@@ -206,7 +209,7 @@ function showProducts(limit = 4, page = 1) {
     }
     const main = document.querySelector("#main");
     main.innerHTML = `
-      <h2>Products</h2>
+      <h2 class="products__title">Products</h2>
       <section class="products">${productsComponent}</section>
       <div class="btnsPrevNext">
         ${btnPrevComponent}
@@ -239,10 +242,12 @@ function showProductDetails(idProduct) {
         <p class="d-product__description">${product.description}</p>
         <div class="d-product__details">
           <p><b>Brand: </b>${product.brand}</p>
-          <p><b>Price: </b>${product.price}</p>
+          <p><b>Price: </b>$${product.price}</p>
           <p><b>Stock: </b>${product.stock}</p>
-          ${product.magnetic?"<span class='d-product__magnetic'>Magnetic</span>":""}
-          ${product.offer?"<span class='d-product__offer'>Special Offer</span>":""}
+          <div>
+            ${product.magnetic?"<span class='d-product__magnetic'>Magnetic</span>":""}
+            ${product.offer?"<span class='d-product__offer'>Special Offer</span>":""}
+          </div>
         </div>
         <div class="d-product__categories">${categoriesComponent}</div>
         <div class="d-product__images">${imagesComponent}</div>
@@ -251,7 +256,9 @@ function showProductDetails(idProduct) {
           <input type="number" class="d-product__amount" id="amount" value=1>
           <button class="d-product__btn-plus" onclick="addOne()">+</button>
         </div>
-        <span class="d-product__add" onclick="addToCart('${product._id}')">Add to Cart</span>
+        <div class="d-product__add-container">
+          <span class="d-product__add" onclick="addToCart('${product._id}')">Add to Cart</span>
+        </div>
       </article>
     `;
   })
@@ -315,7 +322,7 @@ function showCart() {
 
     const main = document.querySelector("#main");
     main.innerHTML = `
-      <h2>My Cart</h2>
+      <h2 class="cart-items__title">My Cart</h2>
       <section class="cart-items">${cartItemsComponent}</section>
     `;
   })
@@ -335,7 +342,10 @@ function removeFromCart(idProduct) {
 
   fetch(url, request)
   .then(response => response.json())
-  .then(() => {showCart();})
+  .then(() => {
+    showCart();
+    showMessages(["Product removed from cart successfully"], true);
+  })
   .catch(console.log)
 }
 
