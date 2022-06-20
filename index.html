@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TheCubicle</title>
+  <link rel="stylesheet" href="./css/styles.css">
+  <script defer src="https://js.stripe.com/v3/"></script>
+  <script defer src="./js/index.js"></script>
+</head>
+<body>
+  <header class="header">
+    <h1 class="header__title">TheCubicle</h1>
+  </header>
+  <nav class="navbar">
+    <ul id="menu" class="navbar__links">
+      <p class="navbar__link" onclick="showWelcome()">Home</p>
+      <p class="navbar__link" onclick="showLogin()">Login</p>
+      <p class="navbar__link" onclick="showSignUp()">SignUp</p>
+    </ul>
+  </nav>
+  <main class="main">
+    <section>
+      <section id="main"></section>
+    </section>
+    <section>
+      <aside>
+      </aside>
+      <aside></aside>
+    </section>
+  </main>
+  <footer class="footer">
+    The following page is under the MIT license, Version 2.0
+  </footer>
+  <section id="messages" class="messages"></section>
+</body>
+</html>
